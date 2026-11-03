@@ -12,6 +12,7 @@
 
 			<!-- Job alert popup -->
 			<?php get_template_part('template-parts/header/jobalert-popup'); ?>
+			<?php get_template_part('template-parts/header/jobalert-bedankt'); ?>
 
 			<!-- Scroll to top -->
 			<button type="button" class="mk-scroll-top" aria-label="Scroll naar boven">
