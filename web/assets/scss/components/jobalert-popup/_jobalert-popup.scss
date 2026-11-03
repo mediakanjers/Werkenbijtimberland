@@ -331,6 +331,10 @@
 }
 
 // ===== Bedankt-popup (na aanmelden via het vacature-overzicht) =====
+// Groen = "gelukt"; bewust buiten het huisstijlpalet.
+$mk-vinkje-groen: #2E9E5B;
+$mk-vinkje-groen-licht: #E3F4EA;
+
 .mk-jobalert-popup__vinkje {
     display: inline-flex;
     width: 64px;
@@ -343,15 +347,15 @@
     }
 
     &__cirkel {
-        fill: $color-blue-light;
-        stroke: $color-secondary;
+        fill: $mk-vinkje-groen-licht;
+        stroke: $mk-vinkje-groen;
         stroke-width: 3;
         stroke-dasharray: 151;
         stroke-dashoffset: 151;
     }
 
     &__check {
-        stroke: $color-secondary;
+        stroke: $mk-vinkje-groen;
         stroke-width: 4;
         stroke-linecap: round;
         stroke-linejoin: round;
