@@ -117,16 +117,27 @@
         }
     }
 
+    // Versleepbare scrollbalk (Swiper scrollbar) onder de slider. Swiper zet
+    // de balk standaard absoluut ín de slider; hier staat hij eronder.
     &__progressbar {
-        position: relative;
-        margin-top: 24px;
+        position: relative !important;
+        left: auto !important;
+        bottom: auto !important;
+        width: 100% !important;
         height: 8px !important;
+        margin-top: 24px;
         background: #fff;
-        border-radius: 2px;
-        overflow: hidden;
+        border-radius: 4px;
+        cursor: pointer;
 
-        .swiper-pagination-progressbar-fill {
+        .swiper-scrollbar-drag {
             background: $color-secondary;
+            border-radius: 4px;
+            cursor: grab;
+
+            &:active {
+                cursor: grabbing;
+            }
         }
     }
 }

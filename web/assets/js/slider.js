@@ -28,51 +28,55 @@ jQuery(document).ready(function ($) {
         });
     });
 
+    // Merken en sectoren: lopen automatisch door én zijn zelf te bedienen
+    // (slepen, versleepbare scrollbalk, horizontaal scrollen met touchpad/muis,
+    // pijltjestoetsen). Autoplay pauzeert zolang de muis op de slider staat.
+    // Geen loop: een scrollbalk werkt niet met loop-klonen; rewind springt aan
+    // het eind terug naar het begin.
+    var zelfBedienen = function ($bar) {
+        return {
+            grabCursor: true,
+            rewind: true,
+            mousewheel: { forceToAxis: true },
+            keyboard: { enabled: true, onlyInViewport: true },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+            scrollbar: {
+                el: $bar.length ? $bar[0] : null,
+                draggable: true,
+                snapOnRelease: true,
+            },
+        };
+    };
+
     $('.swiper[data-slider-type="merken"]').each(function () {
         var $swiper = $(this);
         var sliderId = $swiper.attr('id');
         var $progressbar = $('[data-progressbar-for="' + sliderId + '"]');
         var edge = $swiper.data('slider-edge') || 'vol';
 
-        new Swiper(this, {
+        new Swiper(this, $.extend({
             slidesPerView: 'auto',
             spaceBetween: 20,
             speed: 600,
-            loop: 'vol' === edge,
-            rewind: 'vol' !== edge,
             centeredSlides: 'vol' === edge,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: $progressbar.length ? $progressbar[0] : null,
-                type: 'progressbar',
-            },
-        });
+            centeredSlidesBounds: 'vol' === edge,
+        }, zelfBedienen($progressbar)));
     });
 
     $('.swiper[data-slider-type="sectoren"]').each(function () {
         var $swiper = $(this);
         var sliderId = $swiper.attr('id');
         var $progressbar = $('[data-progressbar-for="' + sliderId + '"]');
-        var edge = $swiper.data('slider-edge') || 'vol';
 
-        new Swiper(this, {
+        new Swiper(this, $.extend({
             slidesPerView: 'auto',
             spaceBetween: 20,
             speed: 600,
-            loop: 'vol' === edge,
-            rewind: 'vol' !== edge,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: $progressbar.length ? $progressbar[0] : null,
-                type: 'progressbar',
-            },
-        });
+        }, zelfBedienen($progressbar)));
     });
 
     $('.swiper[data-slider-type="vacatures"]').each(function () {

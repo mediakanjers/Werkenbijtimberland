@@ -146,7 +146,7 @@ if ( ! empty( $block['className'] ) ) {
             </div>
         </div>
         <div class="container">
-            <div class="mk-slider__progressbar swiper-pagination" data-progressbar-for="<?php echo esc_attr( $slider_id ); ?>"></div>
+            <div class="mk-slider__progressbar swiper-scrollbar" data-progressbar-for="<?php echo esc_attr( $slider_id ); ?>"></div>
         </div>
     <?php endif; ?>
 </section>
