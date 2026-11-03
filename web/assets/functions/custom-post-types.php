@@ -124,4 +124,22 @@
         ) );
     }
     add_action( 'init', 'mediakanjers_tax_vacature_categorie' );
+
+    /**
+     * RSS-feed vacatures (/vacatures/feed/): de inhoud staat in ACF-velden,
+     * dus de standaard-omschrijving was leeg (alleen "The post ... appeared
+     * first on ..."). We tonen de introtekst van de vacature, zodat o.a. de
+     * job alert-mail in MailerLite een nette omschrijving per vacature heeft.
+     */
+    function mediakanjers_vacature_feed_tekst( $tekst ) {
+        if ( 'vacature' !== get_post_type() || ! function_exists( 'get_field' ) ) {
+            return $tekst;
+        }
+
+        $intro = get_field( 'vac_intro' );
+
+        return $intro ? wp_trim_words( wp_strip_all_tags( $intro ), 45, ' […]' ) : $tekst;
+    }
+    add_filter( 'the_excerpt_rss', 'mediakanjers_vacature_feed_tekst', PHP_INT_MAX );
+    add_filter( 'the_content_feed', 'mediakanjers_vacature_feed_tekst', PHP_INT_MAX );
 ?>
