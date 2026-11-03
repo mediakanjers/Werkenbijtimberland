@@ -112,6 +112,31 @@
         }
     }
 
+    // Mogelijkheid zonder uitleg: geen uitklapknop maar een kaartje met vinkje.
+    &__item--tag {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 20px;
+    }
+
+    &__tag__icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: $color-blue-light;
+
+        img {
+            width: 16px;
+            height: 12px;
+            object-fit: contain;
+        }
+    }
+
     &__item.is-open &__arrow {
         transform: rotate(180deg);
     }

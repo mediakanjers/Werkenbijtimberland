@@ -40,6 +40,20 @@ if ( ! empty( $block['className'] ) ) {
                     if ( ! $item_titel ) {
                         continue;
                     }
+
+                    // Alleen een titel, geen uitleg: rustig kaartje met vinkje,
+                    // niet uitklapbaar (er valt niets uit te klappen).
+                    if ( ! $item_inhoud ) :
+                ?>
+                    <div class="mk-stage-dropdown__item mk-stage-dropdown__item--tag">
+                        <span class="mk-stage-dropdown__tag__icon" aria-hidden="true">
+                            <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/icons/' . rawurlencode( 'checkmark (2).svg' ) ); ?>" alt="">
+                        </span>
+                        <span class="mk-stage-dropdown__toggle__title"><?php echo esc_html( $item_titel ); ?></span>
+                    </div>
+                <?php
+                        continue;
+                    endif;
                 ?>
                     <div class="mk-stage-dropdown__item">
                         <button type="button" class="mk-stage-dropdown__toggle" aria-expanded="false" aria-controls="<?php echo esc_attr( $item_id ); ?>">
